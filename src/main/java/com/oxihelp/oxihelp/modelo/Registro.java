@@ -30,8 +30,8 @@ public class Registro {
     private List<Balon> balons;
 
     @ManyToOne
-    @JoinColumn(name = "solicitaRegistro", referencedColumnName = "id")
-    private Cliente solicitaRegistro;
+    @JoinColumn(name = "perteneceCliente", referencedColumnName = "id")
+    private Cliente perteneceCliente;
 
     @ManyToOne
     @JoinColumn(name = "tieneAccion", referencedColumnName = "id")
@@ -44,13 +44,13 @@ public class Registro {
         String fechaEntrega, 
         String fechaDevolucion,
         List<Balon> balons,
-        Cliente solicitaRegistro,
+        Cliente perteneceCliente,
         Accion tieneAccion
         ){
         this.fechaEntrega = fechaEntrega;
         this.fechaDevolucion= fechaDevolucion;
         this.balons = balons;
-        this.solicitaRegistro = solicitaRegistro;
+        this.perteneceCliente = perteneceCliente;
         this.tieneAccion = tieneAccion;
     }
 
@@ -69,8 +69,8 @@ public class Registro {
         }
         return balons;
     }
-    public Cliente getSolicitaRegistro() {
-        return solicitaRegistro;
+    public Cliente getPerteneceCliente() {
+        return perteneceCliente;
     }
     public Accion getTieneAccion() {
         return tieneAccion;
@@ -89,8 +89,8 @@ public class Registro {
     public void setBalons(List<Balon> balons) {
         this.balons = balons;
     }
-    public void setSolicitaRegistro(Cliente solicitaRegistro) {
-        this.solicitaRegistro = solicitaRegistro;
+    public void setPerteneceCliente(Cliente perteneceCliente) {
+        this.perteneceCliente = perteneceCliente;
     }
     public void setTieneAccion(Accion tieneAccion) {
         this.tieneAccion = tieneAccion;

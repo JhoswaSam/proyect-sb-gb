@@ -33,7 +33,7 @@ public class Cliente {
     @Column(name = "fechaNacimiento")
     private String fechaNacimiento;
 
-    @OneToMany(mappedBy = "solicitaRegistro")
+    @OneToMany(mappedBy = "perteneceCliente")
     private List<Registro> registros;
 
 
