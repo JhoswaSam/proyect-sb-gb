@@ -1,13 +1,15 @@
 package com.oxihelp.oxihelp.modelo;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.ManyToMany;
-import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
@@ -28,15 +30,27 @@ public class Administrador {
     @JoinColumn(name = "tieneUsuario", referencedColumnName = "id")
     private Usuario tieneUsuario;
 
+    @OneToMany(mappedBy = "perteneceAdministrador")
+    private List<Balon> balons;
+
     
 
     public Administrador(){}
-    public Administrador(String nombre, String apellido, Usuario tieneUsuario){
+    public Administrador(
+        String nombre, 
+        String apellido, 
+        Usuario tieneUsuario,
+        List<Balon> balons
+        ){
         this.nombre = nombre;
         this.apellido = apellido;
         this.tieneUsuario = tieneUsuario;
+        this.balons = balons;
     }
 
+    public long getId() {
+        return id;
+    }
     public String getNombre() {
         return nombre;
     }
@@ -46,6 +60,18 @@ public class Administrador {
     public Usuario getTieneUsuario() {
         return tieneUsuario;
     }
+    public List<Balon> getBalons() {
+        if(this.balons == null){
+            this.balons = new ArrayList<>();
+        }
+        return balons;
+    }
+
+
+
+    public void setId(long id) {
+        this.id = id;
+    }
     public void setNombre(String nombre) {
         this.nombre = nombre;
     }
@@ -54,6 +80,9 @@ public class Administrador {
     }
     public void setTieneUsuario(Usuario tieneUsuario) {
         this.tieneUsuario = tieneUsuario;
+    }
+    public void setBalons(List<Balon> balons) {
+        this.balons = balons;
     }
 
 }

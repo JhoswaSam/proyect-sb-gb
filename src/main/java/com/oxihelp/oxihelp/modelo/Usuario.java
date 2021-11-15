@@ -20,13 +20,22 @@ public class Usuario {
     private String login;
     @Column(name = "password")
     private String password;
-    @OneToOne(mappedBy = "perteneceAdministrador")
+
+
+    @OneToOne(mappedBy = "tieneUsuario")
     private Administrador administrador;
 
+
+    
     public Usuario(){ }
-    public Usuario(String login, String password){ 
+    public Usuario(
+        String login, 
+        String password,
+        Administrador administrador
+        ){ 
         this.login = login;
         this.password = password;
+        this.administrador = administrador;
     }
 
     public long getId() {
@@ -38,6 +47,11 @@ public class Usuario {
     public String getPassword() {
         return password;
     }
+    public Administrador getAdministrador() {
+        return administrador;
+    }
+
+
     public void setLogin(String login) {
         this.login = login;
     }
@@ -47,4 +61,8 @@ public class Usuario {
     public void setId(long id) {
         this.id = id;
     }
+    public void setAdministrador(Administrador administrador) {
+        this.administrador = administrador;
+    }
+
 }

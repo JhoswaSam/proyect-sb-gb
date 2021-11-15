@@ -11,11 +11,10 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
-
 @Entity
-@Table(name = "accion")
-public class Accion {
-
+@Table(name = "estado")
+public class Estado {
+    
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
@@ -23,18 +22,16 @@ public class Accion {
     @Column(name = "nombre")
     private String nombre;
 
-    @OneToMany(mappedBy = "tieneAccion")
-    private List<Registro> registros;
-    
+    @OneToMany(mappedBy = "tieneEstado")
+    private List<Balon> balons;
 
-
-    public Accion(){}
-    public Accion(
+    public Estado(){}
+    public Estado(
         String nombre,
-        List<Registro> registros
+        List<Balon> balons
         ){
         this.nombre = nombre;
-        this.registros = registros;
+        this.balons = balons;        
     }
 
     public long getId() {
@@ -43,11 +40,11 @@ public class Accion {
     public String getNombre() {
         return nombre;
     }
-    public List<Registro> getRegistros() {
-        if(this.registros == null){
-            this.registros = new ArrayList<>();
+    public List<Balon> getBalons() {
+        if(this.balons == null){
+            this.balons = new ArrayList<>();
         }
-        return registros;
+        return balons;
     }
 
 
@@ -57,7 +54,9 @@ public class Accion {
     public void setNombre(String nombre) {
         this.nombre = nombre;
     }
-    public void setRegistros(List<Registro> registros) {
-        this.registros = registros;
+    public void setBalons(List<Balon> balons) {
+        this.balons = balons;
     }
+
+
 }
