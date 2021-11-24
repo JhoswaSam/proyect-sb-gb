@@ -11,6 +11,8 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 @Entity
 @Table(name = "estado")
 public class Estado {
@@ -23,6 +25,7 @@ public class Estado {
     private String nombre;
 
     @OneToMany(mappedBy = "tieneEstado")
+    @JsonBackReference
     private List<Balon> balons;
 
     public Estado(){}

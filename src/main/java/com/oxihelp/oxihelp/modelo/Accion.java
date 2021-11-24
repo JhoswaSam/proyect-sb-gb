@@ -11,6 +11,8 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 
 @Entity
 @Table(name = "accion")
@@ -24,6 +26,7 @@ public class Accion {
     private String nombre;
 
     @OneToMany(mappedBy = "tieneAccion")
+    @JsonManagedReference
     private List<Registro> registros;
     
 

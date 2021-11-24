@@ -11,6 +11,8 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 
 @Entity
 @Table(name = "cliente")
@@ -34,6 +36,7 @@ public class Cliente {
     private String fechaNacimiento;
 
     @OneToMany(mappedBy = "perteneceCliente")
+    @JsonManagedReference
     private List<Registro> registros;
 
 

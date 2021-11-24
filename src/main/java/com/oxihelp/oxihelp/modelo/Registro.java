@@ -13,6 +13,9 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 @Entity
 @Table(name = "registro")
 public class Registro {
@@ -27,14 +30,17 @@ public class Registro {
     private String fechaDevolucion;
 
     @OneToMany(mappedBy = "perteneceRegistro")
+    @JsonManagedReference
     private List<Balon> balons;
 
     @ManyToOne
     @JoinColumn(name = "perteneceCliente", referencedColumnName = "id")
+    @JsonBackReference
     private Cliente perteneceCliente;
 
     @ManyToOne
     @JoinColumn(name = "tieneAccion", referencedColumnName = "id")
+    @JsonBackReference
     private Accion tieneAccion;
 
 

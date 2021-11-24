@@ -13,6 +13,8 @@ import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 @Entity
 @Table(name = "administrador")
 public class Administrador {
@@ -31,6 +33,7 @@ public class Administrador {
     private Usuario tieneUsuario;
 
     @OneToMany(mappedBy = "perteneceAdministrador")
+    @JsonManagedReference
     private List<Balon> balons;
 
     

@@ -10,6 +10,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 @Entity
 @Table(name = "balon")
 public class Balon {
@@ -24,14 +26,17 @@ public class Balon {
     
     @ManyToOne
     @JoinColumn(name = "perteneceAdministrador", referencedColumnName = "id")
+    @JsonBackReference
     private Administrador perteneceAdministrador;
 
     @ManyToOne
     @JoinColumn(name = "perteneceRegistro" ,referencedColumnName = "id")
+    @JsonBackReference
     private Registro perteneceRegistro ;
 
     @ManyToOne
     @JoinColumn(name = "tieneEstado", referencedColumnName = "id")
+    @JsonBackReference
     private Estado tieneEstado;
     
 
