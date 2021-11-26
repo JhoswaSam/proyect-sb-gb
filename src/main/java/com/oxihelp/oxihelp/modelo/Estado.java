@@ -25,7 +25,7 @@ public class Estado {
     private String nombre;
 
     @OneToMany(mappedBy = "tieneEstado")
-    @JsonBackReference
+    @JsonBackReference(value = "jsonEstado")
     private List<Balon> balons;
 
     public Estado(){}

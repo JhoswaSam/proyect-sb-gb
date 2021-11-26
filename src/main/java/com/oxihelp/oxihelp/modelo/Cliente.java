@@ -36,7 +36,7 @@ public class Cliente {
     private String fechaNacimiento;
 
     @OneToMany(mappedBy = "perteneceCliente")
-    @JsonManagedReference
+    @JsonManagedReference(value = "jsonCliente")
     private List<Registro> registros;
 
 

@@ -30,17 +30,17 @@ public class Registro {
     private String fechaDevolucion;
 
     @OneToMany(mappedBy = "perteneceRegistro")
-    @JsonManagedReference
+    @JsonManagedReference(value = "jsonRegistro")
     private List<Balon> balons;
 
     @ManyToOne
     @JoinColumn(name = "perteneceCliente", referencedColumnName = "id")
-    @JsonBackReference
+    @JsonBackReference(value = "jsonCliente")
     private Cliente perteneceCliente;
 
     @ManyToOne
     @JoinColumn(name = "tieneAccion", referencedColumnName = "id")
-    @JsonBackReference
+    @JsonBackReference(value = "jsonAccion")
     private Accion tieneAccion;
 
 

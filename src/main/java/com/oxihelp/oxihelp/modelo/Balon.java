@@ -26,17 +26,17 @@ public class Balon {
     
     @ManyToOne
     @JoinColumn(name = "perteneceAdministrador", referencedColumnName = "id")
-    @JsonBackReference
+    @JsonBackReference(value = "jsonAdministrador")
     private Administrador perteneceAdministrador;
 
     @ManyToOne
     @JoinColumn(name = "perteneceRegistro" ,referencedColumnName = "id")
-    @JsonBackReference
+    @JsonBackReference(value = "jsonRegistro")
     private Registro perteneceRegistro ;
 
     @ManyToOne
     @JoinColumn(name = "tieneEstado", referencedColumnName = "id")
-    @JsonBackReference
+    @JsonBackReference(value = "jsonEstado")
     private Estado tieneEstado;
     
 

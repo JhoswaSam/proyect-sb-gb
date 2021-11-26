@@ -26,7 +26,7 @@ public class Accion {
     private String nombre;
 
     @OneToMany(mappedBy = "tieneAccion")
-    @JsonManagedReference
+    @JsonManagedReference(value = "jsonAccion")
     private List<Registro> registros;
     
 
