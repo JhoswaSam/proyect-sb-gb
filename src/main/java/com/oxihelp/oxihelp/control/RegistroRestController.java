@@ -7,6 +7,7 @@ import com.oxihelp.oxihelp.modelo.Service.IRegistroService;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -19,11 +20,12 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping("/api")
+@CrossOrigin(origins = "http://localhost:4200")
 public class RegistroRestController {
     @Autowired
     private IRegistroService registroService;
 
-    @GetMapping("/registros")
+    @GetMapping("/registro")
     public List<Registro> Listar(){
         return registroService.findAll();
     }
@@ -43,6 +45,11 @@ public class RegistroRestController {
     public Registro actualizar(@RequestBody Registro registro, @PathVariable Long id){
         Registro registroOriginal = registroService.findById(id);
         // set and get for the original 
+        registroOriginal.setBalons(registro.getBalons());
+        registroOriginal.setFechaDevolucion(registro.getFechaDevolucion());
+        registroOriginal.setFechaEntrega(registroOriginal.getFechaEntrega());
+        registroOriginal.setPerteneceCliente(registro.getPerteneceCliente());
+        registroOriginal.setTieneAccion(registro.getTieneAccion());
         return registroService.save(registroOriginal);
     }
 

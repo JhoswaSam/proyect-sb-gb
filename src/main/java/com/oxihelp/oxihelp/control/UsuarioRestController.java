@@ -7,6 +7,7 @@ import com.oxihelp.oxihelp.modelo.Service.IUsuarioService;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -19,12 +20,12 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping("/api")
+@CrossOrigin(origins = "http://localhost:4200")
 public class UsuarioRestController {
     @Autowired
     private IUsuarioService usuarioService;
 
-
-    @GetMapping("/usuarios")
+    @GetMapping("/usuario")
     public List<Usuario> listar(){
         return usuarioService.findAll();
     }
@@ -44,6 +45,8 @@ public class UsuarioRestController {
     public Usuario actualizar(@RequestBody Usuario usuario, @PathVariable Long id){
         Usuario usuarioOriginal = usuarioService.findById(id);
         usuarioOriginal.setLogin(usuario.getLogin());
+        usuarioOriginal.setAdministrador(usuario.getAdministrador());
+        usuarioOriginal.setPassword(usuario.getPassword());
         return usuarioService.save(usuarioOriginal);
     }
 

@@ -7,6 +7,7 @@ import com.oxihelp.oxihelp.modelo.Service.IEstadoService;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -19,11 +20,12 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping("/api")
+@CrossOrigin(origins = "http://localhost:4200")
 public class EstadoRestController {
     @Autowired
     private IEstadoService estadoService;
 
-    @GetMapping("/estados")
+    @GetMapping("/estado")
     public List<Estado> Listar(){
         return estadoService.findAll();
     }
@@ -41,9 +43,11 @@ public class EstadoRestController {
 
     @PutMapping("/estado/{id}")
     public Estado actualizar(@RequestBody Estado estado, @PathVariable Long id){
-        Estado registroOriginal = estadoService.findById(id);
+        Estado estadoOriginal = estadoService.findById(id);
         // set and get for the original 
-        return estadoService.save(registroOriginal);
+        estadoOriginal.setNombre(estado.getNombre());
+        estadoOriginal.setBalons(estado.getBalons());
+        return estadoService.save(estadoOriginal);
     }
 
     @DeleteMapping("/estado/{id}")

@@ -7,6 +7,7 @@ import com.oxihelp.oxihelp.modelo.Service.IBalonService;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -19,11 +20,12 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping("/api")
+@CrossOrigin(origins = "http://localhost:4200")
 public class BalonRestController {
     @Autowired
     private IBalonService balonService;
 
-    @GetMapping("/balones")
+    @GetMapping("/balon")
     public List<Balon> Listar(){
         return balonService.findAll();
     }
@@ -43,6 +45,10 @@ public class BalonRestController {
     public Balon actualizar(@RequestBody Balon balon, @PathVariable Long id){
         Balon balonOriginal = balonService.findById(id);
         // set and get for the original 
+        balonOriginal.setCapacidad(balon.getCapacidad());
+        balonOriginal.setPerteneceAdministrador(balon.getPerteneceAdministrador());
+        balonOriginal.setPerteneceRegistro(balon.getPerteneceRegistro());
+        balonOriginal.setTieneEstado(balon.getTieneEstado());
         return balonService.save(balonOriginal);
     }
 
