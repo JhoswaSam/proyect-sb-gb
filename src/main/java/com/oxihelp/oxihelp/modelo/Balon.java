@@ -10,10 +10,13 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 
 @Entity
 @Table(name = "balon")
+@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "id")
+// @JsonIdentityReference(alwaysAsId = true)
 public class Balon {
 
     @Id
@@ -26,17 +29,17 @@ public class Balon {
     
     @ManyToOne
     @JoinColumn(name = "perteneceAdministrador", referencedColumnName = "id")
-    @JsonBackReference(value = "jsonAdministrador")
+    // @JsonBackReference(value = "jsonAdministrador")
     private Administrador perteneceAdministrador;
 
     @ManyToOne
     @JoinColumn(name = "perteneceRegistro" ,referencedColumnName = "id")
-    @JsonBackReference(value = "jsonRegistro")
+    // @JsonBackReference(value = "jsonRegistro")
     private Registro perteneceRegistro ;
 
     @ManyToOne
     @JoinColumn(name = "tieneEstado", referencedColumnName = "id")
-    @JsonBackReference(value = "jsonEstado")
+    // @JsonBackReference(value = "jsonEstado")
     private Estado tieneEstado;
     
 

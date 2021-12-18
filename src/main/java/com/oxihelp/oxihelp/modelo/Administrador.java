@@ -13,11 +13,14 @@ import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
+
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 
 @Entity
 @Table(name = "administrador")
+@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "id")
+// @JsonIdentityReference(alwaysAsId = true)
 public class Administrador {
 
     @Id
@@ -31,11 +34,11 @@ public class Administrador {
 
     @OneToOne
     @JoinColumn(name = "tieneUsuario", referencedColumnName = "id")
-    @JsonBackReference(value = "jsonUsuario")
+    // @JsonBackReference(value = "jsonUsuario")
     private Usuario tieneUsuario;
 
     @OneToMany(mappedBy = "perteneceAdministrador")
-    @JsonManagedReference(value = "jsonAdministrador")
+    // @JsonManagedReference(value = "jsonAdministrador")
     private List<Balon> balons;
 
     
