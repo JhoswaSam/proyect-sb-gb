@@ -39,5 +39,10 @@ public class ClienteServiceImpl implements IClienteService{
     public void delete(Long id) {
         clienteDAO.deleteById(id);      
     }
+
+    @Override
+    public Cliente findByDNI(String dni) {
+        return clienteDAO.findByDNI(dni);
+    }
     
 }

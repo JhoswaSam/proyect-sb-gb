@@ -55,4 +55,12 @@ public class UsuarioRestController {
     public void eliminar(@PathVariable Long id){
         usuarioService.delete(id);
     }
+
+    @GetMapping("/usuario/verified/{login}/{password}")
+    public long getIdUser(@PathVariable String login, @PathVariable String password){
+        Usuario usuario  = usuarioService.findByLoginAndPassword(login, password);
+        if (usuario == null){return 0;}
+        if (usuario.getAdministrador() == null){return 0;}
+        return usuario.getAdministrador().getId();
+    }
 }

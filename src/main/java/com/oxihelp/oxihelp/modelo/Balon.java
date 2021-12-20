@@ -11,11 +11,12 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 
 @Entity
 @Table(name = "balon")
-@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "id")
+// @JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "id")
 // @JsonIdentityReference(alwaysAsId = true)
 public class Balon {
 
@@ -35,6 +36,7 @@ public class Balon {
     @ManyToOne
     @JoinColumn(name = "perteneceRegistro" ,referencedColumnName = "id")
     // @JsonBackReference(value = "jsonRegistro")
+    @JsonIgnore
     private Registro perteneceRegistro ;
 
     @ManyToOne

@@ -42,5 +42,11 @@ public class UsuarioServiceImpl implements IUsuarioService{
     public void delete(Long id) {
         usuarioDAO.deleteById(id);
     }
+
+
+    @Override
+    public Usuario findByLoginAndPassword(String login, String password) {
+        return (Usuario) usuarioDAO.findByLoginAndPassword(login, password);
+    }
      
 }

@@ -60,4 +60,11 @@ public class ClienteRestController {
     public void eliminar(@PathVariable Long id){
         clienteService.delete(id);
     }
+
+    @GetMapping("/cliente/get/{dni}")
+    public Cliente getCliente(@PathVariable String dni){
+        Cliente cliente = clienteService.findByDNI(dni);
+        if(cliente == null){ return null;}
+        return cliente;
+    }
 }

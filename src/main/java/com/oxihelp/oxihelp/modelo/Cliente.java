@@ -12,12 +12,13 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 
 
 @Entity
 @Table(name = "cliente")
-@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "id")
+// @JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "id")
 // @JsonIdentityReference(alwaysAsId = true)
 public class Cliente {
     
@@ -40,6 +41,7 @@ public class Cliente {
 
     @OneToMany(mappedBy = "perteneceCliente")
     // @JsonManagedReference(value = "jsonCliente")
+    @JsonIgnore
     private List<Registro> registros;
 
 

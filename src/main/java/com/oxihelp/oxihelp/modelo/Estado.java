@@ -12,11 +12,12 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 
 @Entity
 @Table(name = "estado")
-@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "id")
+// @JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "id")
 // @JsonIdentityReference(alwaysAsId = true)
 public class Estado {
     
@@ -29,6 +30,7 @@ public class Estado {
 
     @OneToMany(mappedBy = "tieneEstado")
     // @JsonBackReference(value = "jsonEstado")
+    @JsonIgnore
     private List<Balon> balons;
 
     public Estado(){}
