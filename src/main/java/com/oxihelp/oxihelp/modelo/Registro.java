@@ -13,14 +13,10 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
-import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 
 @Entity
 @Table(name = "registro")
-// @JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "id")
-// @JsonIdentityReference(alwaysAsId = true)
 public class Registro {
     
     @Id
@@ -33,17 +29,15 @@ public class Registro {
     private String fechaDevolucion;
 
     @OneToMany(mappedBy = "perteneceRegistro")
-    // @JsonManagedReference(value = "jsonRegistro")
+    @JsonIgnore
     private List<Balon> balons;
 
     @ManyToOne
     @JoinColumn(name = "perteneceCliente", referencedColumnName = "id")
-    // @JsonBackReference(value = "jsonCliente")
     private Cliente perteneceCliente;
 
     @ManyToOne
     @JoinColumn(name = "tieneAccion", referencedColumnName = "id")
-    // @JsonBackReference(value = "jsonAccion")
     private Accion tieneAccion;
 
 
